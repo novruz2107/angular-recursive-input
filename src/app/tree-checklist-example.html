@@ -1,0 +1,45 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    matTreeNodeToggle
+    matTreeNodePadding
+  >
+    <button mat-icon-button disabled></button>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>{{node.item}}</mat-label>
+      <input
+        type="number"
+        matInput
+        value="0"
+        [(ngModel)]="node.value"
+        (keyup)="calculate()"
+      />
+    </mat-form-field>
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button
+      mat-icon-button
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.item"
+    >
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>{{node.item}}</mat-label>
+      <input
+        type="number"
+        matInput
+        value="0"
+        [(ngModel)]="node.value"
+        (keyup)="calculate()"
+      />
+    </mat-form-field>
+  </mat-tree-node>
+</mat-tree>
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
