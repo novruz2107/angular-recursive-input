@@ -275,6 +275,7 @@ export class TreeChecklistExample {
         .map((d) => this.nestedNodeMap.get(d)!)
         .map((d) => d.value)
         .reduce((partialSum, a) => partialSum + a, 0);
+      this.calculate(parent);
     }
   }
 }
