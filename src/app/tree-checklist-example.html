@@ -12,7 +12,7 @@
         matInput
         value="0"
         [(ngModel)]="node.value"
-        (keyup)="calculate()"
+        (keyup)="calculate(node)"
       />
     </mat-form-field>
   </mat-tree-node>
@@ -34,7 +34,7 @@
         matInput
         value="0"
         [(ngModel)]="node.value"
-        (keyup)="calculate()"
+        (keyup)="calculate(node)"
       />
     </mat-form-field>
   </mat-tree-node>

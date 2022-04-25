@@ -81,6 +81,7 @@ export class ChecklistDatabase {
       const value = obj[key];
       const node = new TodoItemNode();
       node.item = key;
+      node.value = 0;
 
       if (value != null) {
         if (typeof value === 'object') {
@@ -266,8 +267,15 @@ export class TreeChecklistExample {
     return null;
   }
 
-  calculate() {
-    this.treeControl.dataNodes[0].value = 69;
+  calculate(node: TodoItemFlatNode) {
+    const parent = this.getParentNode(node);
+    if (parent !== null) {
+      const descs = this.getChildren(this.flatNodeMap.get(parent)!);
+      parent.value = descs
+        .map((d) => this.nestedNodeMap.get(d)!)
+        .map((d) => d.value)
+        .reduce((partialSum, a) => partialSum + a, 0);
+    }
   }
 }
 
