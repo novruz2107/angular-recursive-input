@@ -264,12 +264,45 @@ export class TreeChecklistExample {
     const parent = this.getParentNode(node);
     if (parent !== null) {
       const descs = this.getChildren(this.flatNodeMap.get(parent)!);
-      parent.value = descs
+      const childValues = descs
         .map((d) => this.nestedNodeMap.get(d)!)
-        .map((d) => d.value)
-        .reduce((partialSum, a) => partialSum + a, 0);
+        .map((d) => d.value);
+      let parentResult: number;
+      switch (parent.item) {
+        case 'Lifetime cost':
+          parentResult = this.calculateLifetimeCost(
+            childValues[0],
+            childValues[1],
+            childValues[2],
+            childValues[3]
+          );
+          break;
+        case 'Levelized Cost Of Carbon':
+          parentResult = this.calculateLevelizedCostOfCarbon(
+            childValues[0],
+            childValues[1]
+          );
+          break;
+        default:
+          parentResult = 0;
+          break;
+      }
+      parent.value = parentResult;
       this.calculate(parent);
     }
+  }
+
+  calculateLifetimeCost(
+    opex: number,
+    capex: number,
+    subsidies: number,
+    loanInterest: number
+  ) {
+    return opex + capex + subsidies + loanInterest;
+  }
+
+  calculateLevelizedCostOfCarbon(lifetimeCO2: number, lifetimeCost: number) {
+    return lifetimeCost / lifetimeCO2;
   }
 }
 
