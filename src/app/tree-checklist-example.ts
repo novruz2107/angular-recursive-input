@@ -28,22 +28,15 @@ export class TodoItemFlatNode {
  * The Json object for to-do list data.
  */
 const TREE_DATA = {
-  Groceries: {
-    'Almond Meal flour': null,
-    'Organic eggs': null,
-    'Protein Powder': null,
-    Fruits: {
-      Apple: null,
-      Berries: ['Blueberry', 'Raspberry'],
-      Orange: null,
+  'Levelized Cost Of Carbon': {
+    'Lifetime CO2 Captured': null,
+    'Lifetime cost': {
+      'Lifetime OPEX': null,
+      'Lifetime Subsidies': null,
+      'Lifetime CAPEX': null,
+      'Lifetime Loan Interest': null,
     },
   },
-  Reminders: [
-    'Cook dinner',
-    'Read the Material Design spec',
-    'Upgrade Application to Angular',
-  ],
-  OPEX: {},
 };
 
 /**
